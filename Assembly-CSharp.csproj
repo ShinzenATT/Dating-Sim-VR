@@ -61,6 +61,8 @@
      <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
      <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
      <Compile Include="Assets\Scripts\CameraNodAndShakeDetect.cs" />
+     <Compile Include="Assets\Scripts\FPSCounter.cs" />
+     <Compile Include="Assets\Scripts\RotationSpeedDisplay.cs" />
      <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
      <Compile Include="Assets\Tutorial_Info\Scripts\Readme.cs" />
      <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />

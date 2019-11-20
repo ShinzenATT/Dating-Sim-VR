@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent (typeof(Camera))]
 public class CameraNodAndShakeDetect : MonoBehaviour
 {
 
@@ -25,13 +26,33 @@ public class CameraNodAndShakeDetect : MonoBehaviour
     /// </remarks>
     /// <seealso cref="DeltaXYZ"/>
     private float[] PreviousXYZState = { 0, 0, 0 };
+    private int[] Cooldown = { 0, 0, 0 };
+
+    bool _IsShaking = false;
+    public bool IsShaking { get
+        {
+            return _IsShaking;
+        } }
+
+    bool _IsNodding = false;
+    public bool IsNodding { get
+        {
+            return _IsNodding;
+        } }
+
+    bool _IsTilted = false;
+    public bool IsTilted
+    {  get
+        {
+            return _IsTilted;
+        } }
 
     /// <summary>
     /// Start is called before the first frame update in a Unity build
     /// </summary>
     void Start()
     {
-        
+        UpdateCameraRotationCordinates();
     }
 
     /// <summary>
@@ -39,7 +60,7 @@ public class CameraNodAndShakeDetect : MonoBehaviour
     /// </summary>
     void Update()
     {
-        
+        UpdateCameraRotationCordinates();
     }
 
     /// <summary>
@@ -55,5 +76,15 @@ public class CameraNodAndShakeDetect : MonoBehaviour
             PreviousXYZState[i] = currentCordinates[i];
         }
         
+    }
+
+    void AxisShakeCheck(float axisSpeed, ref int cooldown, ref bool status)
+    {
+
+    }
+
+    public float[] GetAxisSpeeds()
+    {
+        return DeltaXYZ;
     }
 }
