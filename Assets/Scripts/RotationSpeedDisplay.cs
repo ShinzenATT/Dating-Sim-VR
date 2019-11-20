@@ -11,6 +11,7 @@ namespace Assets.Scripts
         const string Display = "X: {0} \nY: {1} \nZ: {2}";
         private Text m_text;
         private CameraNodAndShakeDetect Detect;
+        private int FrameCount = 0;
 
         void Start()
         {
@@ -20,8 +21,12 @@ namespace Assets.Scripts
 
         void Update()
         {
-            float[] AxisSpeeds = Detect.GetAxisSpeeds();
-            m_text.text = string.Format(Display, AxisSpeeds[0], AxisSpeeds[1], AxisSpeeds[2]);
+            if (FrameCount++ % 10 == 0)
+            {
+                FrameCount %= 10;
+                float[] AxisSpeeds = Detect.GetAxisSpeeds();
+                m_text.text = string.Format(Display, AxisSpeeds[0], AxisSpeeds[1], AxisSpeeds[2]);
+            }
         }
     }
 }
