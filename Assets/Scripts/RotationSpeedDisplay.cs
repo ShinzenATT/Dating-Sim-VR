@@ -21,11 +21,11 @@ namespace Assets.Scripts
 
         void Update()
         {
-            if (FrameCount++ % 10 == 0)
+            if (FrameCount++ % 5 == 0)
             {
-                FrameCount %= 10;
+                FrameCount %= 5;
                 float[] AxisSpeeds = Detect.GetAxisSpeeds();
-                m_text.text = string.Format(Display, AxisSpeeds[0], AxisSpeeds[1], AxisSpeeds[2]);
+                m_text.text = string.Format(Display, AxisSpeeds[0].ToString("#0.0##"), AxisSpeeds[1].ToString("#0.0##"), AxisSpeeds[2].ToString("#0.0##"));
             }
         }
     }
