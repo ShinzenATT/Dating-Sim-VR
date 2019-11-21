@@ -69,7 +69,7 @@ public class CameraNodAndShakeDetect : MonoBehaviour
     void UpdateCameraRotationCordinates()
     {
         Transform camPos = MainCamera.transform;
-        float[] currentCordinates = { camPos.rotation.x, camPos.rotation.y, camPos.rotation.z};
+        float[] currentCordinates = { camPos.eulerAngles.x, camPos.eulerAngles.y, camPos.eulerAngles.z};
         for(int i = 0; i < currentCordinates.Length; i++)
         {
             DeltaXYZ[i] = currentCordinates[i] - PreviousXYZState[i];
@@ -80,6 +80,11 @@ public class CameraNodAndShakeDetect : MonoBehaviour
 
     void AxisShakeCheck(float axisSpeed, ref int cooldown, ref bool status)
     {
+        bool PositiveDirection = true;
+        if(axisSpeed < -0.00001)
+        {
+            PositiveDirection = false;
+        }
 
     }
 
