@@ -29,10 +29,12 @@ public class ShowController : MonoBehaviour
             if (ShowControllers && !ShowControllersState)
             {
                 hand.ShowController();
+                hand.SetSkeletonRangeOfMotion(Valve.VR.EVRSkeletalMotionRange.WithController);
             }
             else if (!ShowControllers && ShowControllersState)
             {
                 hand.HideController();
+                hand.SetSkeletonRangeOfMotion(Valve.VR.EVRSkeletalMotionRange.WithoutController);
             }
         }
 
