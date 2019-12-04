@@ -65,9 +65,3 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
-
-#Other stuff
-Assets/Oculus.meta
-Assets/SteamVR.meta
-Assets/StreamingAssets.meta
-Assets/SteamVR_Resources.meta
