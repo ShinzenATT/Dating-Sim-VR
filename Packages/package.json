@@ -1,9 +1,9 @@
 {
   "_comment": "This file is not made to be executed",
   "dependencies": {
-    "Oculus Intergration": "https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022",
-    "SteamVR Plugin":"https://assetstore.unity.com/packages/tools/integration/steamvr-plugin-32647",
-    "Standard Assets (for Unity 2017.3)": "https://assetstore.unity.com/packages/essentials/asset-packs/standard-assets-for-unity-2017-3-32351",
+    "Oculus Intergration": ">=1.43",
+    "SteamVR Plugin":">=2.5.0 (sdk 1.8.19)",
+    "Standard Assets (for Unity 2017.3)": ">=1.5.0",
     "com.unity.ads": "2.0.8",
     "com.unity.analytics": "3.2.2",
     "com.unity.collab-proxy": "1.2.15",
