@@ -1,5 +1,23 @@
 {
+  "_comment": "This file is not made to be executed",
   "dependencies": {
+    "Oculus Intergration": {
+      "name": "Oculus Intergration Unity Plugin",
+      "url": "https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022",
+      "version": ">=1.43"
+    },
+    "SteamVR Plugin": {
+      "name": "SteamVR Plugin for Unity",
+      "url": "https://assetstore.unity.com/packages/tools/integration/steamvr-plugin-32647",
+      "version": ">=2.5.0"
+    },
+    "Standard Assets": {
+      "name": "Standard Assets (for Unity 2017.3)",
+      "description": "A set of prefabs, scripts etc. some files cause errors on higher Unity versions so only use files that are needed from this asset set.",
+      "url": "https://assetstore.unity.com/packages/essentials/asset-packs/standard-assets-for-unity-2017-3-32351",
+      "version": ">=1.1.5"
+      
+    },
     "com.unity.ads": "2.0.8",
     "com.unity.analytics": "3.2.2",
     "com.unity.collab-proxy": "1.2.15",
@@ -38,6 +56,6 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0
   }
 }
