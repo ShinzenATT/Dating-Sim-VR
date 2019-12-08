@@ -31,7 +31,7 @@ public class SimpleAttach : MonoBehaviour
         hand.HideGrabHint();
     }
 
-    private void OnHandHoverUpdate(Hand hand)
+    private void HandHoverUpdate(Hand hand)
     {
         GrabTypes grabType = hand.GetGrabStarting();
         bool IsGrabEnding = hand.IsGrabEnding(gameObject);
