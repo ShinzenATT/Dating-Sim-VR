@@ -4,6 +4,7 @@ using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
+[RequireComponent(typeof(Interactable))]
 public class SimpleAttach : MonoBehaviour
 {
     private Interactable interactable;
