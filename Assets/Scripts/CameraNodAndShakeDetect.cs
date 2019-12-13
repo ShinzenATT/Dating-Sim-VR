@@ -28,13 +28,13 @@ public class CameraNodAndShakeDetect : MonoBehaviour
     private float[] PreviousXYZState = { 0, 0, 0 };
     private int[] Cooldown = { 0, 0, 0 };
 
-    bool _IsShaking = false;
+    private bool _IsShaking = false;
     public bool IsShaking { get
         {
             return _IsShaking;
         } }
 
-    bool _IsNodding = false;
+    private bool _IsNodding = false;
     public bool IsNodding { get
         {
             return _IsNodding;
@@ -81,9 +81,18 @@ public class CameraNodAndShakeDetect : MonoBehaviour
     void AxisShakeCheck(float axisSpeed, ref int cooldown, ref bool status)
     {
         bool PositiveDirection = true;
-        if(axisSpeed < -0.00001)
+        if(axisSpeed < -0.0001)
         {
             PositiveDirection = false;
+        }
+
+        if(Mathf.Abs(axisSpeed) >= 10)
+        {
+            cooldown = 45 * (PositiveDirection ? 1 : -1);
+        }
+        else if(Mathf.Abs(cooldown) > 0)
+        {
+            cooldown += (PositiveDirection ? -1 : 1);
         }
 
     }
