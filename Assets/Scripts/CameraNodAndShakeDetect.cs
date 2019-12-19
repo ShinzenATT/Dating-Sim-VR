@@ -17,35 +17,26 @@ public class CameraNodAndShakeDetect : MonoBehaviour
     /// <remarks>
     /// There are three values in the array which is X, Y and Z rotation in that order
     /// </remarks>
-    private float[] DeltaXYZ = {0, 0, 0 };
+    public float[] RotationSpeedXYZ { get; } = { 0, 0, 0 };
+
     /// <summary>
     /// The XYZ readings in the previous frame
     /// </summary>
     /// <remarks>
     /// There are three values in the array which is X, Y and Z rotation in that order
     /// </remarks>
-    /// <seealso cref="DeltaXYZ"/>
+    /// <seealso cref="RotationSpeedXYZ"/>
     private float[] PreviousXYZState = { 0, 0, 0 };
     private int[] Cooldown = { 0, 0, 0 };
 
     private bool _IsShaking = false;
-    public bool IsShaking { get
-        {
-            return _IsShaking;
-        } }
+    public bool IsShaking { get { return _IsShaking; } }
 
     private bool _IsNodding = false;
-    public bool IsNodding { get
-        {
-            return _IsNodding;
-        } }
+    public bool IsNodding { get { return _IsNodding; } }
 
-    bool _IsTilted = false;
-    public bool IsTilted
-    {  get
-        {
-            return _IsTilted;
-        } }
+    private bool _IsTiltShaking = false;
+    public bool IsTiltShaking { get { return _IsTiltShaking; } }
 
     /// <summary>
     /// Start is called before the first frame update in a Unity build
@@ -61,6 +52,14 @@ public class CameraNodAndShakeDetect : MonoBehaviour
     void Update()
     {
         UpdateCameraRotationCordinates();
+        AxisShakeCheck(RotationSpeedXYZ[1], ref Cooldown[1], ref _IsShaking);
+        AxisShakeCheck(RotationSpeedXYZ[0], ref Cooldown[0], ref _IsNodding);
+        AxisShakeCheck(RotationSpeedXYZ[2], ref Cooldown[2], ref _IsTiltShaking);
+
+        if (IsNodding || IsShaking || IsTiltShaking)
+        {
+            Debug.Log(string.Format("Cooldown: <color=red> {0} </color> <color=green> {1} </color> <color=blue> {2} </color>", Cooldown[0], Cooldown[1], Cooldown[2]));
+        }
     }
 
     /// <summary>
@@ -72,7 +71,7 @@ public class CameraNodAndShakeDetect : MonoBehaviour
         float[] currentCordinates = { camPos.eulerAngles.x, camPos.eulerAngles.y, camPos.eulerAngles.z};
         for(int i = 0; i < currentCordinates.Length; i++)
         {
-            DeltaXYZ[i] = currentCordinates[i] - PreviousXYZState[i];
+            RotationSpeedXYZ[i] = currentCordinates[i] - PreviousXYZState[i];
             PreviousXYZState[i] = currentCordinates[i];
         }
         
@@ -80,25 +79,30 @@ public class CameraNodAndShakeDetect : MonoBehaviour
 
     void AxisShakeCheck(float axisSpeed, ref int cooldown, ref bool status)
     {
-        bool PositiveDirection = true;
-        if(axisSpeed < -0.0001)
+        int Direction = 1;
+        if(axisSpeed < 0)
         {
-            PositiveDirection = false;
+            Direction = -1;
         }
 
-        if(Mathf.Abs(axisSpeed) >= 10)
+        if(Mathf.Abs(axisSpeed) >= 11)
         {
-            cooldown = 45 * (PositiveDirection ? 1 : -1);
+            if(!status && cooldown != 0 && (cooldown < 0 ? -1 : 1) != Direction)
+            {
+                status = true;
+            }
+
+            cooldown = 25 * Direction;
         }
         else if(Mathf.Abs(cooldown) > 0)
         {
-            cooldown += (PositiveDirection ? -1 : 1);
+            cooldown += (cooldown < 0 ? 1 : -1);
+        }
+        else if (status && cooldown == 0)
+        {
+            status = false;
         }
 
-    }
 
-    public float[] GetAxisSpeeds()
-    {
-        return DeltaXYZ;
     }
 }
