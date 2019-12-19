@@ -20,13 +20,18 @@ public class CameraNodAndShakeDetect : MonoBehaviour
     public float[] RotationSpeedXYZ { get; } = { 0, 0, 0 };
 
     /// <summary>
-    /// The XYZ readings in the previous frame
+    /// The XYZ rotations readings in the previous frame
     /// </summary>
     /// <remarks>
     /// There are three values in the array which is X, Y and Z rotation in that order
     /// </remarks>
     /// <seealso cref="RotationSpeedXYZ"/>
     private float[] PreviousXYZState = { 0, 0, 0 };
+
+    /// <summary>
+    /// The amount of frames until the shaking is considered stopped.
+    /// </summary>
+    /// <remarks>The value may change between postive and negative depnding on the direction</remarks>
     private int[] Cooldown = { 0, 0, 0 };
 
     private bool _IsShaking = false;
@@ -77,6 +82,12 @@ public class CameraNodAndShakeDetect : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Determines if a certain axis is shaked according to the cooldown and axis rotation speed.
+    /// </summary>
+    /// <param name="axisSpeed">The current rotation speed in the target axis. See also <seealso cref="RotationSpeedXYZ"/>.</param>
+    /// <param name="cooldown">The current cooldown until the shake stops. See also <seealso cref="Cooldown"/>.</param>
+    /// <param name="status">The boolean that shows if the axis is being shaked or not and may be changed to reflect the result.</param>
     void AxisShakeCheck(float axisSpeed, ref int cooldown, ref bool status)
     {
         int Direction = 1;

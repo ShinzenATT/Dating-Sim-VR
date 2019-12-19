@@ -30,7 +30,8 @@ namespace Assets.Scripts
             {
                 FrameCount %= 5;
                 float[] AxisSpeeds = Detect.RotationSpeedXYZ;
-                m_text.text = string.Format(Display, AxisSpeeds[0].ToString("#0.0##"), AxisSpeeds[1].ToString("#0.0##"), AxisSpeeds[2].ToString("#0.0##"), Detect.IsShaking, Detect.IsNodding, Detect.IsTiltShaking);
+                m_text.text = string.Format(Display, AxisSpeeds[0].ToString("#0.0##"), AxisSpeeds[1].ToString("#0.0##"), 
+                    AxisSpeeds[2].ToString("#0.0##"), Detect.IsShaking, Detect.IsNodding, Detect.IsTiltShaking);
             }
         }
     }
