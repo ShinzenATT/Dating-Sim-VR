@@ -7,7 +7,7 @@
 /[Aa]ssets/Standard Assets/
 /Standard Assets/
 /[Aa]ssets/Imported Assets/*
-!/[Aa]ssets/Imported Assets/Info.md
+!/[Aa]ssets/Imported Assets/**/Readme.md
 
 
 #
