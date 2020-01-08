@@ -6,7 +6,8 @@
 /[Aa]ssets/StreamingAssets/
 /[Aa]ssets/Standard Assets/
 /Standard Assets/
-/Imported Assets/*
+/[Aa]ssets/Imported Assets/*
+
 
 #
 #Premade Unity gitignore file
