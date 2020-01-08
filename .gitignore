@@ -6,6 +6,8 @@
 /[Aa]ssets/StreamingAssets/
 /[Aa]ssets/Standard Assets/
 /Standard Assets/
+/Imported Assets/*
+
 #
 #Premade Unity gitignore file
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
