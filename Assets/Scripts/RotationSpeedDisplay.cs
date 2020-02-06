@@ -7,8 +7,6 @@ namespace Assets.Scripts
     [RequireComponent(typeof(Text))]
     class RotationSpeedDisplay : MonoBehaviour
     {
-        public Camera TargetCamera;
-        public Camera FallbackCamera;
         const string Display = "X: {0} \nY: {1} \nZ: {2} \nShake: {3}\nNod: {4}\nDiagonal Shake: {5}";
         private Text m_text;
         private CameraNodAndShakeDetect Detect;
@@ -16,11 +14,8 @@ namespace Assets.Scripts
 
         void Start()
         {
-            if (!(TargetCamera.isActiveAndEnabled))
-            {
-                TargetCamera = FallbackCamera;
-            }
-            Detect = TargetCamera.GetComponent<CameraNodAndShakeDetect>();
+
+            Detect = InstanceVariables.NodAndShakeDetectComponent;
             m_text = GetComponent<Text>();
         }
 
