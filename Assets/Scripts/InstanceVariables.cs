@@ -9,6 +9,10 @@ public class InstanceVariables : MonoBehaviour
 
     public Camera TargetCamera;
     public Camera FallbackCamera;
+
+    private static int FrameCounter = 0;
+    private const int FrameRate = 90;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +25,19 @@ public class InstanceVariables : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        FrameCounterUpdate();
+    }
+
+    public static bool FrameTimer (int interval)
+    {
+        bool grant = false;
+
+        if(FrameCounter % interval == 0)
+        {
+            grant = true;
+        }
+
+        return grant;
     }
 
     private Camera ActiveCameraFinder(Camera targetCam, Camera fallbackCam)
@@ -41,8 +57,15 @@ public class InstanceVariables : MonoBehaviour
         return activeCam;
     }
 
+    static void FrameCounterUpdate()
+    {
+        FrameCounter = (++FrameCounter) % FrameRate;
+    }
+
+    /*
     public void UpdateVariables()
     {
         Start();
     }
+    */
 }
