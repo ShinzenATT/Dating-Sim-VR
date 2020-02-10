@@ -76,7 +76,7 @@ public class RotateTowardsPlayer : MonoBehaviour
             modifier = -180;
         }
 
-        if (InstanceVariables.FrameTimer(15))
+        if (InstanceVariables.ObjectSensoryLogs && InstanceVariables.FrameTimer(15))
             Debug.Log("Angle: <color=orange>" + angle +
                     "</color> \n" + Distance[0] + ' ' + Distance[1]);
         

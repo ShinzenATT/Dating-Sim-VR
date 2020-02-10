@@ -61,7 +61,7 @@ public class CameraNodAndShakeDetect : MonoBehaviour
         AxisShakeCheck(RotationSpeedXYZ[0], ref Cooldown[0], ref _IsNodding);
         AxisShakeCheck(RotationSpeedXYZ[2], ref Cooldown[2], ref _IsTiltShaking);
 
-        if (IsNodding || IsShaking || IsTiltShaking)
+        if (InstanceVariables.CameraLogs && (IsNodding || IsShaking || IsTiltShaking))
         {
             Debug.Log(string.Format("Cooldown: <color=red> {0} </color> <color=green> {1} </color> <color=blue> {2} </color>", Cooldown[0], Cooldown[1], Cooldown[2]));
         }

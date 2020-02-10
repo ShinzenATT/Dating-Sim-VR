@@ -10,6 +10,15 @@ public class InstanceVariables : MonoBehaviour
     public Camera TargetCamera;
     public Camera FallbackCamera;
 
+    public bool _ObjectStateLogs = true;
+    public static bool ObjectStateLogs { get; private set; }
+
+    public bool _CameraLogs = true;
+    public static bool CameraLogs { get; private set; }
+
+    public bool _ObjectSensoryLogs = true;
+    public static bool ObjectSensoryLogs { get; private set; }
+
     private static int FrameCounter = 0;
     private const int FrameRate = 90;
 
@@ -19,6 +28,8 @@ public class InstanceVariables : MonoBehaviour
         ActiveCamera = ActiveCameraFinder(TargetCamera, FallbackCamera);
 
         NodAndShakeDetectComponent = ActiveCamera.GetComponent<CameraNodAndShakeDetect>();
+
+        if(_ObjectStateLogs)
         Debug.Log("NodNShake Component: <color=orange>" + NodAndShakeDetectComponent.ToString() + "</color>");
     }
     
@@ -26,6 +37,9 @@ public class InstanceVariables : MonoBehaviour
     void Update()
     {
         FrameCounterUpdate();
+
+        bool[] currentPermissions = { _ObjectStateLogs, _CameraLogs, _ObjectSensoryLogs };
+        UpdateLogPermissions(currentPermissions);
     }
 
     public static bool FrameTimer (int interval)
@@ -40,6 +54,37 @@ public class InstanceVariables : MonoBehaviour
         return grant;
     }
 
+    private static void UpdateLogPermissions(bool[] logPermissions)
+    {
+        for (int i = 0; i < logPermissions.Length; i++)
+        {
+            bool temp;
+            try
+            {
+                temp = logPermissions[i];
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                break;
+            }
+
+            switch (i)
+            {
+                case 0:
+                    ObjectStateLogs = temp;
+                    break;
+                case 1:
+                    CameraLogs = temp;
+                    break;
+                case 2:
+                    ObjectSensoryLogs = temp;
+                    break;
+                default:
+                    throw new System.IndexOutOfRangeException();
+            }
+        }
+    }
+
     private Camera ActiveCameraFinder(Camera targetCam, Camera fallbackCam)
     {
         Camera activeCam;
@@ -52,6 +97,7 @@ public class InstanceVariables : MonoBehaviour
             activeCam = fallbackCam;
         }
 
+        if(_ObjectStateLogs)
         Debug.Log("Camera: <color=green>" + activeCam.ToString() + "</color>");
 
         return activeCam;
