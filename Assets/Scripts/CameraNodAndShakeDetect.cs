@@ -43,6 +43,8 @@ public class CameraNodAndShakeDetect : MonoBehaviour
     private bool _IsTiltShaking = false;
     public bool IsTiltShaking { get { return _IsTiltShaking; } }
 
+    public bool ExclusiveShake { get; private set; } = false;
+
     /// <summary>
     /// Start is called before the first frame update in a Unity build
     /// </summary>
@@ -57,13 +59,24 @@ public class CameraNodAndShakeDetect : MonoBehaviour
     void Update()
     {
         UpdateCameraRotationCordinates();
-        AxisShakeCheck(RotationSpeedXYZ[1], ref Cooldown[1], ref _IsShaking);
-        AxisShakeCheck(RotationSpeedXYZ[0], ref Cooldown[0], ref _IsNodding);
+        AxisShakeCheck(RotationSpeedXYZ[1], 20, ref Cooldown[1], ref _IsShaking);
+        AxisShakeCheck(RotationSpeedXYZ[0], 20, ref Cooldown[0], ref _IsNodding);
         AxisShakeCheck(RotationSpeedXYZ[2], ref Cooldown[2], ref _IsTiltShaking);
+
+        if(IsNodding == IsShaking)
+        {
+            ExclusiveShake = false;
+        }
+        else
+        {
+            ExclusiveShake = true;
+        }
 
         if (InstanceVariables.CameraLogs && (IsNodding || IsShaking || IsTiltShaking))
         {
-            Debug.Log(string.Format("Cooldown: <color=red> {0} </color> <color=green> {1} </color> <color=blue> {2} </color>", Cooldown[0], Cooldown[1], Cooldown[2]));
+            Debug.Log(string.Format("Cooldown: <color=red> {0} </color> <color=green> {1} </color> <color=blue> {2} </color> \n" +
+                "Status: <color=red> {3} </color> <color=green> {4} </color> <color=blue> {5} </color> <color=orange> {6} </color>", 
+                Cooldown[0], Cooldown[1], Cooldown[2], _IsNodding, _IsShaking, _IsTiltShaking, ExclusiveShake));
         }
     }
 
@@ -88,7 +101,7 @@ public class CameraNodAndShakeDetect : MonoBehaviour
     /// <param name="axisSpeed">The current rotation speed in the target axis. See also <seealso cref="RotationSpeedXYZ"/>.</param>
     /// <param name="cooldown">The current cooldown until the shake stops. See also <seealso cref="Cooldown"/>.</param>
     /// <param name="status">The boolean that shows if the axis is being shaked or not and may be changed to reflect the result.</param>
-    void AxisShakeCheck(float axisSpeed, ref int cooldown, ref bool status)
+    void AxisShakeCheck(float axisSpeed, float threshold, ref int cooldown, ref bool status)
     {
         int Direction = 1;
         if(axisSpeed < 0)
@@ -96,7 +109,7 @@ public class CameraNodAndShakeDetect : MonoBehaviour
             Direction = -1;
         }
 
-        if(Mathf.Abs(axisSpeed) >= 11)
+        if(Mathf.Abs(axisSpeed) >= threshold)
         {
             if(!status && cooldown != 0 && (cooldown < 0 ? -1 : 1) != Direction)
             {
@@ -113,7 +126,10 @@ public class CameraNodAndShakeDetect : MonoBehaviour
         {
             status = false;
         }
+    }
 
-
+    void AxisShakeCheck(float axisSpeed, ref int cooldown, ref bool status)
+    {
+        AxisShakeCheck(axisSpeed, 11, ref cooldown, ref status);
     }
 }
