@@ -36,10 +36,10 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   shutterAngle:
-    overrideState: 0
+    overrideState: 1
     value: 270
   sampleCount:
-    overrideState: 0
+    overrideState: 1
     value: 10
 --- !u!114 &114065399647409342
 MonoBehaviour:
@@ -1504,19 +1504,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
   focusDistance:
     overrideState: 1
-    value: 10
+    value: 3
   aperture:
-    overrideState: 0
-    value: 5.6
-  focalLength:
     overrideState: 1
-    value: 241
-  kernelSize:
+    value: 1.1
+  focalLength:
     overrideState: 0
     value: 1
+  kernelSize:
+    overrideState: 1
+    value: 0
