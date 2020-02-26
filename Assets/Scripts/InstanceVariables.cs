@@ -6,6 +6,8 @@ public class InstanceVariables : MonoBehaviour
 {
     public static Camera ActiveCamera { get; private set; }
     public static CameraNodAndShakeDetect NodAndShakeDetectComponent { get; private set; }
+    private static AttentionTrigger AttentionTrigger;
+    public static GameObject PlayerFocus { get; private set; } = null;
 
     public Camera TargetCamera;
     public Camera FallbackCamera;
@@ -28,6 +30,7 @@ public class InstanceVariables : MonoBehaviour
         ActiveCamera = ActiveCameraFinder(TargetCamera, FallbackCamera);
 
         NodAndShakeDetectComponent = ActiveCamera.GetComponent<CameraNodAndShakeDetect>();
+        AttentionTrigger = ActiveCamera.GetComponent<AttentionTrigger>();
 
         if(_ObjectStateLogs)
         Debug.Log("NodNShake Component: <color=orange>" + NodAndShakeDetectComponent.ToString() + "</color>");
@@ -37,6 +40,12 @@ public class InstanceVariables : MonoBehaviour
     void Update()
     {
         FrameCounterUpdate();
+
+        PlayerFocus = AttentionTrigger.PlayerFocus;
+        /*
+        if (FrameTimer(20))
+            Debug.Log("CurrentFocus: " + PlayerFocus.ToString());
+            */
 
         bool[] currentPermissions = { _ObjectStateLogs, _CameraLogs, _ObjectSensoryLogs };
         UpdateLogPermissions(currentPermissions);

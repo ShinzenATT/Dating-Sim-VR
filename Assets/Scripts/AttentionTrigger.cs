@@ -15,15 +15,19 @@ public class AttentionTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (InstanceVariables.FrameTimer(30))
             Debug.Log("PlayerFocus: " + PlayerFocus.ToString());
+            */
     }
 
     private void OnTriggerEnter(Collider focus)
     {
         if (focus.gameObject.tag == "Character")
         {
-            Debug.Log("Focus:" + focus.gameObject.ToString());
+            if(InstanceVariables.CameraLogs)
+            Debug.Log("Focus: <color=purple>" + focus.gameObject.ToString() + "</color>");
+
             PlayerFocus = focus.gameObject;
         }
     }
