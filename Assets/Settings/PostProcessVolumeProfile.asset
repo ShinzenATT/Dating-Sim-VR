@@ -37,10 +37,10 @@ MonoBehaviour:
     value: 1
   shutterAngle:
     overrideState: 1
-    value: 270
+    value: 0
   sampleCount:
     overrideState: 1
-    value: 10
+    value: 4
 --- !u!114 &114065399647409342
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -58,7 +58,7 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   gradingMode:
-    overrideState: 0
+    overrideState: 1
     value: 1
   externalLut:
     overrideState: 0
@@ -94,19 +94,19 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 0
-    value: 0
+    value: 7
   tint:
     overrideState: 0
-    value: 0
+    value: -4
   colorFilter:
     overrideState: 0
     value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
     overrideState: 0
-    value: 0
+    value: 71
   saturation:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 29
   brightness:
     overrideState: 0
     value: 0
@@ -115,16 +115,16 @@ MonoBehaviour:
     value: 0
   contrast:
     overrideState: 0
-    value: 0
+    value: 100
   mixerRedOutRedIn:
     overrideState: 0
-    value: 100
+    value: -200
   mixerRedOutGreenIn:
     overrideState: 0
-    value: 0
+    value: -200
   mixerRedOutBlueIn:
     overrideState: 0
-    value: 0
+    value: 200
   mixerGreenOutRedIn:
     overrideState: 0
     value: 0
@@ -1424,17 +1424,17 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   softKnee:
-    overrideState: 0
+    overrideState: 1
     value: 0.5
   clamp:
     overrideState: 0
     value: 65472
   diffusion:
-    overrideState: 0
-    value: 7
+    overrideState: 1
+    value: 8
   anamorphicRatio:
     overrideState: 0
-    value: 0
+    value: -1
   color:
     overrideState: 0
     value: {r: 1, g: 1, b: 1, a: 1}
@@ -1465,23 +1465,23 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   mode:
-    overrideState: 0
+    overrideState: 1
     value: 0
   color:
-    overrideState: 0
+    overrideState: 1
     value: {r: 0, g: 0, b: 0, a: 1}
   center:
-    overrideState: 0
+    overrideState: 1
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.142
+    value: 0.579
   smoothness:
     overrideState: 1
     value: 0.4
   roundness:
     overrideState: 1
-    value: 0
+    value: 0.16
   rounded:
     overrideState: 1
     value: 0
@@ -1504,19 +1504,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   focusDistance:
     overrideState: 1
-    value: 3
+    value: 1
   aperture:
     overrideState: 1
-    value: 1.1
+    value: 1.4
   focalLength:
+    overrideState: 1
+    value: 15
+  kernelSize:
     overrideState: 0
     value: 1
-  kernelSize:
-    overrideState: 1
-    value: 0
