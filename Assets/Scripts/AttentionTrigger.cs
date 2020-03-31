@@ -29,6 +29,8 @@ public class AttentionTrigger : MonoBehaviour
             Debug.Log("Focus: <color=purple>" + focus.gameObject.ToString() + "</color>");
 
             PlayerFocus = focus.gameObject;
+
+            focus.gameObject.GetComponent<CharacterProfile>().OnAttention();
         }
     }
 
@@ -37,6 +39,8 @@ public class AttentionTrigger : MonoBehaviour
         if(other.gameObject.Equals(PlayerFocus))
         {
             PlayerFocus = null;
+
+            other.gameObject.GetComponent<CharacterProfile>().OnLeave();
         }
     }
 }
